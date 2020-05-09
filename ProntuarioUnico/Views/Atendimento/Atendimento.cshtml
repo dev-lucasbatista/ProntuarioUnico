@@ -1,0 +1,59 @@
+﻿@using ProntuarioUnico.ViewModels.Atendimento
+@model AtendimentoViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head {
+    <link rel="stylesheet" href="@Url.Content("~/Content/Views/Atendimento/Atendimento.css?" + DateTimeOffset.Now)" />
+}
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/Views/PessoaFisica/Index.js?" + DateTimeOffset.Now)"></script>
+}
+
+<div class="cssTituloAtendimento">
+    <h3>Atendimento - Nome Paciente: @ViewBag.NomePessoa </h3>
+</div>
+
+<form id="frmInserirAtendimentoIndex_Container" action="@Url.Action("Cadastrar", "Atendimento")" method="post">
+    <input type="hidden" name="viewModel.CodigoPessoaFisica" value="@(ViewBag.CodigoPessoaFisica)" />
+    <div id="divInserirAtendimentoIndex_Especialidade" class="cssInserirAtendimentoIndex_Box">
+        <label class="cssInserirAtendimentoIndex_Box_Label"> Tipo de Atendimento </label>
+        <select class="cssInserirAtendimentoIndex_Box_Componente form-control" name="viewModel.CodigoTipoAtendimento" required>
+            @foreach (var item in ViewBag.TiposAtendimento)
+            {
+                <option value="@item.CodigoTipoAtendimento" selected="@(item.CodigoTipoAtendimento == 1)">@item.DescricaoTipoAtendimento</option>
+            }
+        </select>
+    </div>
+    <div id="divInserirAtendimentoIndex_Especialidade" class="cssInserirAtendimentoIndex_Box">
+        <label class="cssInserirAtendimentoIndex_Box_Label"> Especialidade </label>
+        <select class="cssInserirAtendimentoIndex_Box_Componente form-control" name="viewModel.CodigoEspecialidade" required>
+            @foreach (var item in ViewBag.Especialidades)
+            {
+                <option value="@item.CodigoEspecialidade" selected="@(item.CodigoEspecialidade == 1)">@item.DescricaoEspecialidade</option>
+            }
+        </select>
+    </div>
+    <div class="cssInserirAtendimentoIndex_Box cssInserirAtendimentoIndex_TextArea">
+        <label class="cssInserirAtendimentoIndex_Box_Label cssInserirAtendimentoIndex_TextArea_Label">Sintomas</label>
+        <textarea class="form-control" id="txtInserirAtendimento_Observacoes" name="viewModel.Sintomas" rows="7"></textarea>
+    </div>
+    <div class="cssInserirAtendimentoIndex_Box cssInserirAtendimentoIndex_TextArea">
+        <label class="cssInserirAtendimentoIndex_Box_Label cssInserirAtendimentoIndex_TextArea_Label">Diagnóstico</label>
+        <textarea class="form-control" id="txtInserirAtendimento_Observacoes" name="viewModel.Diagnostico" rows="7"></textarea>
+    </div>
+    <div class="cssInserirAtendimentoIndex_Box cssInserirAtendimentoIndex_TextArea">
+        <label class="cssInserirAtendimentoIndex_Box_Label cssInserirAtendimentoIndex_TextArea_Label">Prescrição</label>
+        <textarea class="form-control" id="txtInserirAtendimento_Observacoes" name="viewModel.Prescricao" rows="7"></textarea>
+    </div>
+    <div class="cssInserirAtendimentoIndex_Box cssInserirAtendimentoIndex_TextArea">
+        <label class="cssInserirAtendimentoIndex_Box_Label cssInserirAtendimentoIndex_TextArea_Label">Observação</label>
+        <textarea class="form-control" id="txtInserirAtendimento_Observacoes" name="viewModel.Observacao" rows="7"></textarea>
+    </div>
+    <div class="cssInserirAtendimentoIndex_Box_Botoes">
+        <button id="btnIndex_Salvar" type="submit" class="btn btn-primary" value="Cadastrar Atendimento">Cadastrar Atendimento</button>
+    </div>
+</form>

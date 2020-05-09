@@ -1,0 +1,61 @@
+﻿@using ProntuarioUnico.ViewModels
+@model PessoaFisicaViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head {
+    <link rel="stylesheet" href="@Url.Content("~/Content/Views/PessoaFisica/Index.css?" + DateTimeOffset.Now)" />
+}
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/Views/PessoaFisica/Index.js?" + DateTimeOffset.Now)"></script>
+}
+
+<form id="frmInserirAtendimentoIndex_Container" action="@Url.Action("Atualizar", "PessoaFisica")" method="post">
+    <input type="hidden" name="pessoaViewModel.Codigo" value="@(Model.Codigo)"/>    
+    <div class="cssInserirAtendimentoIndex_Box">
+            <label class="cssInserirAtendimentoIndex_Box_Label">Nome</label>
+            <input type="text" class="cssInserirAtendimentoIndex_Box_Componente form-control" name="pessoaViewModel.Nome" placeholder="Nome completo" value="@Model.Nome">
+        </div>
+        <div class="cssInserirAtendimentoIndex_Box">
+            <label class="cssInserirAtendimentoIndex_Box_Label">Data Nascimento</label>
+            <input type="date" class="cssInserirAtendimentoIndex_Box_Componente form-control" name="pessoaViewModel.DataNascimento" value="@(Model.DataNascimento.ToString("yyyy-MM-dd"))">
+        </div>
+        <div class="cssInserirAtendimentoIndex_Box">
+            <label class="cssInserirAtendimentoIndex_Box_Label">E-mail</label>
+            <input type="email" class="cssInserirAtendimentoIndex_Box_Componente form-control" name="pessoaViewModel.Email" value="@Model.Email">
+        </div>
+        <div class="cssInserirAtendimentoIndex_Box">
+            <label class="cssInserirAtendimentoIndex_Box_Label">Número CPF</label>
+            <input type="number" class="cssInserirAtendimentoIndex_Box_Componente form-control" name="pessoaViewModel.CPF" value="@Model.CPF">
+        </div>
+        <div class="cssInserirAtendimentoIndex_Box cssInserirAtendimentoIndex_TextArea">
+            <div class="cssIndex_TituloSenhas">
+                <label class="cssInserirAtendimentoIndex_Box_Label form-check-label" for="pessoaViewModel.AlterarSenha">Alterar Senha</label>
+                <input style="margin:5px;" class="form-check-input" type="checkbox" onchange="ControleCheckBox(this)" name="pessoaViewModel.AlterarSenha" value="true">
+                <input type="hidden" value="false" name="pessoaViewModel.AlterarSenha" />
+            </div>
+            <div class="cssIndex_SubItem">
+                <br />
+                <div class="cssIndex_SubItem_Row">
+                    <label class="cssInserirAtendimentoIndex_Box_Label">Senha antiga</label>
+                    <input type="password" class="form-control" name="pessoaViewModel.SenhaAntiga" @(Model.AlterarSenha ? "" : "disabled")>
+                </div>
+                <br />
+                <div class="cssIndex_SubItem_Row">
+                    <label class="cssInserirAtendimentoIndex_Box_Label">Nova Senha</label>
+                    <input type="password" class="form-control" name="pessoaViewModel.NovaSenha" @(Model.AlterarSenha ? "" : "disabled")>
+                </div>
+                <br />
+                <div class="cssIndex_SubItem_Row">
+                    <label class="cssInserirAtendimentoIndex_Box_Label">Confirmar nova senha</label>
+                    <input type="password" class="form-control" name="pessoaViewModel.ConfirmarSenhaNova" @(Model.AlterarSenha ? "" : "disabled")>
+                </div>
+            </div>
+        </div>
+        <div class="cssInserirAtendimentoIndex_Box_Botoes">
+            <button id="btnIndex_Salvar" class="btn btn-primary" type="submit" value="Atualizar Registro">Atualizar Registro</button>
+        </div>
+</form>

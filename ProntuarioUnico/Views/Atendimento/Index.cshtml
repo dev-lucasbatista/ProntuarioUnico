@@ -1,0 +1,84 @@
+﻿@using ProntuarioUnico.ViewModels
+@model PessoaFisicaViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head {
+    <link rel="stylesheet" href="@Url.Content("~/Content/Views/Atendimento/Index.css?" + DateTimeOffset.Now)" />
+}
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/Views/Atendimento/Index.js?" + DateTimeOffset.Now)"></script>
+}
+
+@*Fitro*@
+<div class="cssIndex_Filtro">
+    <h1 class="cssIndex_Label">Filtros</h1>
+    <button id="btnIndex_Accordion">
+        <img class="cssAberto" src="@Url.Content("~/Content/Imagens/InserirAtendimento/add.png")" />
+    </button>
+</div>
+<div class="cssIndex_Filtro_Container">
+    <form action="@Url.Action("BuscarPaciente", "Atendimento")" method="get">
+        <div class="form-row">
+            <div class="col-sm-6">
+                <label class="cssIndex_lblFiltros"> CPF </label>
+                <input type="text" class="form-control form-control-sm" name="cpf" value="@ViewBag.CPF" min="0" />
+            </div>
+        </div>
+        <br />
+        <button id="btnIndex_Procurar" class="btn btn-primary" type="submit" value="Filtrar">Buscar</button>
+    </form>
+</div>
+
+
+
+
+@* Tabela *@
+<div id="divIndex_ContainerTabela">
+    @if (ViewBag.HasData && Model != default(PessoaFisicaViewModel))
+    {
+         <table id="tblIndex_TbProntuario">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        CPF
+                    </th>
+                    <th scope="col">
+                        Nome Completo
+                    </th>
+                    <th scope="col">
+                        Data Nascimento
+                    </th>
+                    <th scope="col">
+                        Email
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="tbody_pessoas">
+                <tr class="cssIndex_TbProntuario_Row">
+                    <td>
+                        @Model.CPF
+                    </td>
+                    <td>
+                        @Model.Nome
+                    </td>
+                    <td>
+                        @Model.DataNascimento.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @Model.Email
+                    </td>
+                </tr>
+            </tbody>
+         </table>
+         <div class="cssBtnIndex">
+            <form action="@Url.Action("Atendimento", "Atendimento")" method="get">
+                <input type="hidden" name="codigoPessoaFisica" value="@Model.Codigo">
+                <button type="submit" class="btn btn-primary" value="Realizar Atendimento">Realizar Atendimento</button>
+            </form>
+         </div>
+    }
+</div>

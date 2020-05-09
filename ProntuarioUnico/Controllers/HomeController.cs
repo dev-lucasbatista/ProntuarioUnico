@@ -1,28 +1,44 @@
-﻿using System;
+﻿using ProntuarioUnico.AuxiliaryClasses;
+using ProntuarioUnico.Business.Entities;
+using ProntuarioUnico.Business.Interfaces.Data;
+using ProntuarioUnico.Filters;
+using ProntuarioUnico.ViewModels;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ProntuarioUnico.Controllers
 {
+    [AutorizacaoFilter]
     public class HomeController : Controller
     {
+        private readonly IPessoaFisicaRepository PessoaFisicaRepository;
+        private readonly IMedicoRepository MedicoRepository;
+
+        public HomeController(IPessoaFisicaRepository pessoaFisicaRepository, IMedicoRepository medicoRepository)
+        {
+            this.PessoaFisicaRepository = pessoaFisicaRepository;
+            this.MedicoRepository = medicoRepository;
+        }
+
         public ActionResult Index()
         {
-            return View();
-        }
+            string codigo = UserAuthentication.ObterCodigoInternoUsuarioLogado();
+            string tipoUsuario = UserAuthentication.ObterTipoUsuario();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            if (tipoUsuario == "pessoa_fisica")
+            {
+                PessoaFisica pessoa = this.PessoaFisicaRepository.Obter(Convert.ToInt32(codigo));
 
-            return View();
-        }
+                ViewBag.NomeUsuario = pessoa.Nome;
+                ViewBag.NomePagina = $"Olá, {pessoa.Nome}";
+            }
+            else
+            {
+                Medico medico = this.MedicoRepository.Obter(Convert.ToInt32(codigo));
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+                ViewBag.NomePagina = $"Olá, {medico.NomeGuerra}";
+            }
 
             return View();
         }

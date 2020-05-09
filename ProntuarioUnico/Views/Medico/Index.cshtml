@@ -1,0 +1,58 @@
+﻿@using ProntuarioUnico.ViewModels
+@model MedicoViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section head {
+    <link rel="stylesheet" href="@Url.Content("~/Content/Views/Medico/Index.css?" + DateTimeOffset.Now)" />
+}
+
+@section scripts {
+    <script src="@Url.Content("~/Scripts/Views/Medico/Index.js?" + DateTimeOffset.Now)"></script>
+}
+
+<form id="frmInserirAtendimentoIndex_Container" action="@Url.Action("Atualizar", "Medico")" method="post">
+    <input type="hidden" name="medicoViewModel.Codigo" value="@Model.Codigo">
+    <input type="hidden" name="medicoViewModel.CodigoPessoaFisica" value="@Model.CodigoPessoaFisica">
+    <div class="cssInserirAtendimentoIndex_Box">
+        <label class="cssInserirAtendimentoIndex_Box_Label">Nome Guerra</label>
+        <input type="text" class="cssInserirAtendimentoIndex_Box_Componente form-control" name="medicoViewModel.NomeGuerra" placeholder="Nome completo" value="@Model.NomeGuerra">
+    </div>
+    <div class="cssInserirAtendimentoIndex_Box">
+        <label class="cssInserirAtendimentoIndex_Box_Label">Número CRM</label>
+        <input type="number" class="cssInserirAtendimentoIndex_Box_Componente form-control" name="medicoViewModel.CRM" value="@Model.CRM">
+    </div>
+    <div class="cssInserirAtendimentoIndex_Box">
+        <label class="cssInserirAtendimentoIndex_Box_Label">E-mail</label>
+        <input type="email" class="cssInserirAtendimentoIndex_Box_Componente form-control" name="medicoViewModel.Email" value="@Model.Email">
+    </div>
+    <div class="cssInserirAtendimentoIndex_Box cssInserirAtendimentoIndex_TextArea">
+        <div class="cssIndex_TituloSenhas">
+            <label class="cssInserirAtendimentoIndex_Box_Label form-check-label" for="medicoViewModel.AlterarSenha">Alterar Senha</label>
+            <input style="margin:5px;" class="form-check-input" type="checkbox" onchange="Medico.ControleCheckBox(this)" name="medicoViewModel.AlterarSenha" value="true">
+            <input type="hidden" value="false" name="medicoViewModel.AlterarSenha" />
+        </div>
+        <div class="cssIndex_SubItem">
+            <br />
+            <div class="cssIndex_SubItem_Row">
+                <label class="cssInserirAtendimentoIndex_Box_Label">Senha antiga</label>
+                <input type="password" class="form-control" name="medicoViewModel.SenhaAntiga" @(Model.AlterarSenha ? "" : "disabled")>
+            </div>
+            <br />
+            <div class="cssIndex_SubItem_Row">
+                <label class="cssInserirAtendimentoIndex_Box_Label">Nova Senha</label>
+                <input type="password" class="form-control" name="medicoViewModel.NovaSenha" @(Model.AlterarSenha ? "" : "disabled")>
+            </div>
+            <br />
+            <div class="cssIndex_SubItem_Row">
+                <label class="cssInserirAtendimentoIndex_Box_Label">Confirmar nova senha</label>
+                <input type="password" class="form-control" name="medicoViewModel.ConfirmarSenhaNova" @(Model.AlterarSenha ? "" : "disabled")>
+            </div>
+        </div>
+    </div>
+    <div class="cssInserirAtendimentoIndex_Box_Botoes">
+        <button id="btnIndex_Salvar" class="btn btn-primary" type="submit" value="Atualizar Registro">Atualizar Registro</button>
+    </div>
+</form>

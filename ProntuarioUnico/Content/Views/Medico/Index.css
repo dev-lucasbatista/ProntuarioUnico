@@ -1,0 +1,108 @@
+﻿main {
+    width: initial !important;
+    margin-top: 147px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 147px);
+    font-family: Verdana;
+}
+
+body {
+    width: 100%;
+    height: -moz-fit-content;
+}
+
+/*#region Conteudo principal*/
+
+#frmInserirAtendimentoIndex_Container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*#endregion Conteudo principal*/
+
+/*#region Containers*/
+.cssInserirAtendimentoIndex_Box {
+    width: 60%;
+    display: flex;
+    background-color: #FBF3F3;
+    margin: 10px 0;
+    border: 1px solid rgba(66, 83, 102, 0.4);
+    box-shadow: 1px 1px 10px rgba(66, 83, 102, 0.7);
+    border-radius: 20px;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+}
+
+.cssInserirAtendimentoIndex_Box_Botoes {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    height: 80px;
+    align-items: center;
+}
+
+.cssInserirAtendimentoIndex_Box.cssInserirAtendimentoIndex_TextArea {
+    height: auto;
+    flex-direction: column;
+    padding: 15px 0;
+}
+
+.cssInserirAtendimentoIndex_Box_Label {
+    color: #425366;
+    font-weight: 600;
+    margin: 0 25px 0 0;
+    word-wrap: break-word;
+    width: 129px;
+}
+
+    .cssInserirAtendimentoIndex_Box_Label.cssInserirAtendimentoIndex_TextArea_Label {
+        padding: 10px 0;
+    }
+
+#txtInserirAtendimento_Observacoes {
+    width: 80%;
+    min-height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(66, 83, 102, 0.8);
+    box-shadow: 1px 1px 10px rgba(66, 83, 102, 0.7);
+}
+
+.cssInserirAtendimentoIndex_Box_Componente {
+    width: 250px;
+}
+
+#btnIndex_Salvar {
+    width: 215px;
+    padding: 10px 0;
+}
+
+#btnIndex_Limpar {
+    width: 215px;
+    padding: 10px 0;
+    margin: 20px 0 0 0;
+    background-color: #D91C1C !important;
+}
+
+.cssIndex_SubItem_Row {
+    display: flex;
+}
+
+    .cssIndex_SubItem_Row input {
+        width: 40%;
+        margin-left: 23%;
+    }
+
+.cssIndex_TituloSenhas {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+/*#endregion Containers*/

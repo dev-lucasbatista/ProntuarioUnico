@@ -57,5 +57,18 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="SQL Server" />
+    <Folder Include="SQL Server\ProntuarioUnico" />
+    <Folder Include="SQL Server\ProntuarioUnico\Procesures" />
+    <Folder Include="SQL Server\ProntuarioUnico\Scripts" />
+    <Folder Include="SQL Server\ProntuarioUnico\Tables" />
+    <Folder Include="SQL Server\ProntuarioUnico\Views" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SQL Server\ProntuarioUnico\Scripts\InsertTables.sql" />
+    <None Include="SQL Server\ProntuarioUnico\Tables\create_table_scripts.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SQL Server\ProntuarioUnico\Views\create_views_scripts.sql" />
   </ItemGroup>
 </Project>

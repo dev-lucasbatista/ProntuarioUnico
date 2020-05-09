@@ -1,42 +1,113 @@
 ﻿<!DOCTYPE html>
+
+@{
+    ProntuarioUnico.Global mobjGlobal = new ProntuarioUnico.Global();
+    string controllerName = Convert.ToString(this.ViewContext.RouteData.Values["controller"]);
+}
+
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta content="True" name="HandheldFriendly" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>Prontuário Único</title>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Libs/Bootstrap/bootstrap.css?" + DateTimeOffset.Now)" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Libs/Bootstrap/bootstrap-grid.css?" + DateTimeOffset.Now)" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Libs/Global/Global.css?" + DateTimeOffset.Now)" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Views/Shared/Layout.css?" + DateTimeOffset.Now)" />
+    @RenderSection("head", required: false)
+
+    
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+
+<body load style="display:none;">
+    @* Cabeçalho *@
+    <header id="hdrLayout_Cabecalho">
+        <h1 id="Principal">
+            <a href="@Url.Action("Index", "Home")">
+                <img id="imgLayout_Logo" src="~/Content/Imagens/Shared/imgLogo.png" />
+            </a>
+        </h1>
+        <nav id="navLayout_Cabecalho" role="navigation">
+            <ul id="lstLayout_Menu">
+                @if (ViewBag.TipoUsuario.Trim() == "pessoa_fisica")
+                {
+                    <li>
+                        <a id="btnLayout_Principal" class="click-especial" href="@Url.Action("Index", "Prontuario")">Prontuário</a>
+                    </li>
+                }
+
+                @if (ViewBag.TipoUsuario.Trim() == "medico")
+                {
+                    <li>
+                        <a id="btnLayout_Principal" class="click-especial" href="@Url.Action("Index", "Atendimento")">Atendimento</a>
+                    </li>
+                }
+            </ul>
+            <div class="cssLayout_Dropdown_Menu">
+                <button id="btnMenu">
+                    <img class="cssImagemFundo" src="~/Content/Imagens/Shared/imgAccountUser.png" />
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <ul id="divLayout_ContentMenu">
+                    <li class="cssLayout_ContextMenu__Item">
+                        <a href=@(ViewBag.TipoUsuario.Trim() == "pessoa_fisica"? Url.Action("Index", "PessoaFisica"): Url.Action("Index", "Medico"))>Meu Perfil</a>
+                    </li>
+                    <li class="cssLayout_ContextMenu__Separador"></li>
+                    <li class="cssLayout_ContextMenu__Item">
+                        <a href="@Url.Action("Login", "Login")">Sair</a>
+                    </li>
                 </ul>
             </div>
+        </nav>
+    </header>
+    @* Menu de opções usuário *@
+    <main>
+        <div id="divLayout_Principal">
+            @* Título da página *@
+            <div id="divLayout_Titulo">
+                <div></div>
+                <label>@ViewBag.NomePagina</label>
+            </div>
+            @RenderBody()
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        <div class="modal fade" id="divProntuario_ModalIntervaloInvalido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <br /><h1 id="msgRetorno"></h1><br />
+                    </div>
+                    <div class="modal-footer">
+                        <button id="BtnModal" type="submit" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        @*<button type="button" class="btn btn-primary">Salvar mudanças</button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+    <script src="@Url.Content("~/Scripts/Libs/Jquery/jquery-3.4.1.js?" + DateTimeOffset.Now)"></script>
+    <script src="@Url.Content("~/Scripts/Libs/Bootstrap/bootstrap.js?" + DateTimeOffset.Now)"></script>
+    <script src="@Url.Content("~/Scripts/Libs/Bootstrap/bootstrap.bundle.js?" + DateTimeOffset.Now)"></script>
+    <script src="@Url.Content("~/Scripts/Libs/Global/Global.js?" + DateTimeOffset.Now)"></script>
+    <script src="@Url.Content("~/Scripts/Views/Shared/Layout.js?" + DateTimeOffset.Now)"></script>
+    <script src="@Url.Content("~/Scripts/Views/Login/Login.js?" + DateTimeOffset.Now)"></script>
+    <script>
+        var gstrGlobalPath = '@mobjGlobal.Monta_GlobalPath(Request)';
+    </script>
+    @RenderSection("scripts", required: true)
+
+    @if (ViewBag.Mensagem != null)
+    {
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $('#divProntuario_ModalIntervaloInvalido').modal("show", true);
+            $('#msgRetorno').text("@ViewBag.Mensagem");
+        });
+        </script>
+    }
 </body>
 </html>

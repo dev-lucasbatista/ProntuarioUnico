@@ -1,0 +1,58 @@
+﻿body {
+    width: 100%;
+    height: -moz-fit-content;
+    margin: unset;
+    background-color: #e0e0e0;
+}
+
+main {
+    width: initial !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Verdana;
+}
+
+#divLogin_SignIn {
+    width: 425px;
+    border: 1px solid #C0C0C0;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.25);
+    background-color: #F7EFEF;
+    display: flex;
+    justify-content: center;
+    padding: 15px 30px;
+    flex-direction: column;
+}
+
+#divLogin_Logo {
+    display: flex;
+    padding: 15px 0;
+    justify-content: center;
+}
+
+.cssLogin_BtnRigth {
+    text-align: end;
+}
+
+form {
+    padding: 15px 0;
+}
+
+form label {
+    padding: 5px 0;
+    color: #425366;
+    font-weight: 600;
+}
+
+#spnLogin_CriarConta{
+    padding-top: 5px;
+}
+
+.form-row {
+    margin-bottom: 1rem;
+}
+
+#spnLogin_SouMedico {
+    text-align: right;
+}

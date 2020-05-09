@@ -12,7 +12,12 @@ namespace ProntuarioUnico.Mappers
         {
             Mapper.Initialize(x =>
             {
-                //x.AddProfile<MapperModelToViewModel>();
+                x.AddProfile<MapperAtendimentoViewModelToAtendimento>();
+                x.AddProfile<MapperPessoaFisicaToPessoaFisicaViewModel>();
+                x.AddProfile<MapperPessoaFisicaViewModelToPessoaFisica>();
+                x.AddProfile<MapperNovoUsuarioPessoaFisicaViewModelToPessoaFisica>();
+                x.AddProfile<MapperMedicoToMedicoViewModel>();
+                x.AddProfile<MapperMedicoViewModelToMedico>();
             });
         }
     }

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+
+@{
+    ProntuarioUnico.Global mobjGlobal = new ProntuarioUnico.Global();
+}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="True" name="HandheldFriendly" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prontuário Único</title>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Libs/Bootstrap/bootstrap.css?" + DateTimeOffset.Now)" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Libs/Bootstrap/bootstrap-grid.css?" + DateTimeOffset.Now)" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Libs/Global/Global.css?" + DateTimeOffset.Now)" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Views/Login/Login.css?" + DateTimeOffset.Now)" />
+    @RenderSection("head", required: false)
+</head>
+
+<body load style="display:none;">
+    <main>
+        @RenderBody()
+        @*Modal*@
+        <div class="modal fade" id="divLogin_ModalRecuperarSenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <br /><h1 id="msgRetorno">E-mail enviado para endereço vinculado a conta.</h1><br />
+                    </div>
+                    <div class="modal-footer">
+                        <button id="BtnModal" type="submit" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        @*<button type="button" class="btn btn-primary">Salvar mudanças</button>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="@Url.Content("~/Scripts/Libs/Jquery/jquery-3.4.1.js?" + DateTimeOffset.Now)"></script>
+    <script src="@Url.Content("~/Scripts/Libs/Bootstrap/bootstrap.js?" + DateTimeOffset.Now)"></script>
+    <script src="@Url.Content("~/Scripts/Libs/Bootstrap/bootstrap.bundle.js?" + DateTimeOffset.Now)"></script>
+    <script src="@Url.Content("~/Scripts/Libs/Global/Global.js?" + DateTimeOffset.Now)"></script>
+    <script src="@Url.Content("~/Scripts/Views/Login/Login.js?" + DateTimeOffset.Now)"></script>
+    <script>
+        var gstrGlobalPath = '@mobjGlobal.Monta_GlobalPath(Request)';
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,166 @@
+﻿main {
+    width: initial !important;
+    margin-top: 147px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 147px);
+    font-family: Verdana;
+}
+
+body {
+    width: 100%;
+    height: -moz-fit-content;
+}
+
+/*#region Filtros*/
+
+.cssIndex_Filtro {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-bottom: 1px solid #B7A5A5;
+    border-top: 1px solid #B7A5A5;
+    margin: auto;
+    /*margin-bottom: 30px;*/
+    cursor: pointer;
+    transition: background-color 500ms;
+}
+
+.cssIndex_Filtro:active {
+    background-color: #C0C0C0;
+}
+
+.cssIndex_Label {
+    width: 50px;
+    color: #B7A5A5;
+    font-weight: 600;
+    padding: 3px 0;
+}
+
+#btnIndex_Accordion {
+    display: flex;
+    border: unset;
+    background-color: transparent;
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    margin-left: calc(100% - 80px);
+}
+
+#btnIndex_Accordion:focus {
+    outline: 0;
+}
+
+.cssIndex_Filtro_Container {
+    width: 95%;
+    margin: auto;
+    padding: 0 20px 0;
+    margin-bottom: 40px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max=height 0.4s ease-in-out;
+}
+
+#btnIndex_Procurar {
+    width: 100px;
+    margin-left: calc(100% - 100px);
+}
+
+#frmIndex_Filtro {
+    z-index: 0;
+}
+
+.cssIndex_lblFiltros {
+    padding: 5px 0;
+    color: #425366;
+    font-weight: 600;
+}
+
+/*#endregion Filtros*/
+/*#region tabela*/
+#divIndex_ContainerTabela {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+#tblIndex_TbProntuario {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.2rem;
+    min-width: 400px;
+    width: 90%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+#tblIndex_TbProntuario thead tr{
+    background-color: #425366;
+    text-align: left;
+    font-family: Verdana;
+    font-weight: 300;
+    color: whitesmoke;
+}
+
+#tblIndex_TbProntuario th,
+#tblIndex_TbProntuario td {
+    padding: 12px 15px;
+}
+
+#tblIndex_TbProntuario tbody tr{
+    border-bottom: 1px solid #B7A5A5;
+    background-color: #E3DBDB;
+}
+
+#tblIndex_TbProntuario tbody .cssIndex_TbProntuario_Row{
+    cursor: pointer;
+}
+
+#tblIndex_TbProntuario tbody .cssIndex_TbProntuario_Row:active{
+    background-color: #B5B5BF;
+}
+
+/*#tblIndex_TbProntuario tbody .cssIndex_TbProntuario_Row:hover + .cssIndex_TbProntuario_Row_Descricao{
+    visibility: visible;
+}*/
+
+#tblIndex_TbProntuario .cssIndex_TbProntuario_Row:nth-of-type(2n+1){
+    background-color: #C4C4C4;
+}
+
+.cssIndex_TbProntuario_Row button {
+    display: flex;
+    background-color: transparent;
+    width: 50px;
+    padding: unset;
+    margin: auto;
+    border: unset;
+    outline: 0;
+    transition: 0.2s;
+}
+
+.cssIndex_TbProntuario_Row_Descricao{
+    display: none;
+}
+
+.cssIndex_TbProntuario_Row_Descricao div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.cssIndex_TbProntuario_Row_Descricao h2,
+.cssIndex_TbProntuario_Row_Descricao p{
+    color: #425366;
+    padding: 5px 0;
+}
+
+.cssIndex_TbProntuario_Row_Descricao h2{
+    font-weight: 600;
+}
+
+.cssIndex_TbProntuario_Row_Descricao p{
+    font-size: 0.9rem;
+}
+/*#endregion tabela*/

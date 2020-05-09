@@ -40,7 +40,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\PessoaFisicaBusiness.cs" />
+    <Compile Include="Entities\Atendimento.cs" />
+    <Compile Include="Entities\Base\BaseEntity.cs" />
+    <Compile Include="Entities\Enums\StatusLogin.cs" />
+    <Compile Include="Entities\EspecialidadeAtendimento.cs" />
+    <Compile Include="Entities\Medico.cs" />
+    <Compile Include="Entities\PessoaFisica.cs" />
+    <Compile Include="Entities\Prontuario.cs" />
+    <Compile Include="Entities\TipoAtendimento.cs" />
+    <Compile Include="Entities\TokenAtendimento.cs" />
+    <Compile Include="Interfaces\Business\IPessoaFisicaBusiness.cs" />
+    <Compile Include="Interfaces\Data\IAtendimentoRepository.cs" />
+    <Compile Include="Interfaces\Data\IEspecialidadeAtendimentoRepository.cs" />
+    <Compile Include="Interfaces\Data\IMedicoRepository.cs" />
+    <Compile Include="Interfaces\Data\IPessoaFisicaRepository.cs" />
+    <Compile Include="Interfaces\Data\IProntuarioRepository.cs" />
+    <Compile Include="Interfaces\Data\ITipoAtendimentoRepository.cs" />
+    <Compile Include="Interfaces\Data\ITokenAtendimentoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

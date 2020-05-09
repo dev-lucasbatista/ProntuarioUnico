@@ -70,10 +70,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InjectionDependency.cs" />
+    <Compile Include="Injector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProntuarioUnico.Business\ProntuarioUnico.Business.csproj">
+      <Project>{B512C5C3-5ADA-4721-BE6A-B0BDC7854F15}</Project>
+      <Name>ProntuarioUnico.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProntuarioUnico.Data\ProntuarioUnico.Data.csproj">
+      <Project>{FC553CFA-5895-42CD-8C76-8230095F70A3}</Project>
+      <Name>ProntuarioUnico.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

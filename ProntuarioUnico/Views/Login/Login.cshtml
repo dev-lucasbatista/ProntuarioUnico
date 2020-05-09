@@ -1,0 +1,136 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<div id="divLogin_SignIn">
+    <div id="divLogin_Logo">
+        <img src="~/Content/Imagens/Shared/imgLogo.png" />
+    </div>
+    @*Formulário para login*@
+    <form id="frmLogin_Entrar" action="@Url.Action("Logar", "Login")" onsubmit="return Login.AutenticarPessoa()" method="post" style="display: block;">
+        <div class="form-group">
+            <label for="UsuarioCPF">Login</label>
+            <input  type="text" class="form-control" id="txtLogin_Login" name="Usuario.CPF" value="@ViewBag.Usuario.CPF" aria-describedby="emailHelp" placeholder="CPF" required>
+        </div>
+        <div class="form-group">
+            <label for="UsuarioSenha">Senha</label>
+            <input type="password" class="form-control" id="txtLogin_Senha" name="Usuario.Senha" value="@ViewBag.Usuario.Senha" placeholder="Digite sua senha" required>
+            <div class="form-row">
+                <div class="col-sm-6">
+                    <a href="javascript:Login.spnLogin_EsqueceuSenha_Click()" id="spnLogin_EsqueceuSenha" class="form-text text-muted">Esqueceu sua senha?</a>
+                </div>
+                <div class="col-sm-6">
+                    <a href="javascript:Login.spnLogin_SouMedico_Click()" id="spnLogin_SouMedico" class="form-text text-muted">Sou médico</a>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <a href="javascript:Login.spnLogin_CriarConta_Click()" id="spnLogin_CriarConta" class="form-text text-muted">Criar conta</a>
+            </div>
+            <div class="col cssLogin_BtnRigth">
+                @*<button id="btnLogin_Entrar" type="button" class="btn btn-primary" onclick="Login.Logar()">Entrar</button>*@
+                <input class="btn btn-primary" type="submit" value="Entrar">
+            </div>
+        </div>
+    </form>
+    @*Formulário para recuperação de senha*@
+    <form id="frmLogin_Senha" action="@Url.Action("RecuperarAcessoPessoaFisica", "Login")" onsubmit="return Login.AutenticarRecuperarAcessoPessoaFisica()" method="post" style="display: none;">
+        <div class="form-group">
+            <label for="txtLogin_NovaSenha">Login</label>
+            <input type="text" class="form-control" id="txtLogin_NovaSenha" name="cpf" aria-describedby="emailHelp" placeholder="Informe seu CPF">
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <a href="javascript:Login.btnLayoutVoltar_Click()" id="btnLayoutVoltar" class="form-text text-muted cssLogin_BtnVoltar">Voltar</a>
+            </div>
+            <div class="col cssLogin_BtnRigth">
+                @*Botão para acionar modal*@
+                @*<button id="btnLogin_NovaSenha" type="button" class="btn btn-primary" data-target="#divLogin_ModalRecuperarSenha" data-toggle="modal">Prosseguir</button>*@
+
+                <button type="button" onclick="Login.AutenticarRecuperarAcessoPessoaFisica()" class="btn btn-primary" value="Prosseguir">Prosseguir</button>
+</div>
+        </div>
+    </form>
+    @*Formulário para criar conta*@
+    <form id="frmLogin_CriarConta" action="@Url.Action("CadastrarPessoaFisica", "Login")" onsubmit="return Login.CadastrarPessoaFisica()" method="post" style="display: none;">
+        <div class="form-group">
+            <label for="txtLogin_Nome">Nome</label>
+            <input type="text" class="form-control" id="txtLogin_Nome" name="novoUsuario.Nome" aria-describedby="emailHelp" placeholder="Nome completo" required>
+        </div>
+        <div class="form-row">
+            <div class=" col-sm-5">
+                <label for="txtLogin_CPF">CPF</label>
+                <input type="text" class="form-control" id="txtLogin_CPF" name="novoUsuario.CPF" placeholder="CPF" required>
+            </div>
+            <div class="col-sm-7">
+                <label for="txtLogin_DtNasc">Data de nascimento</label>
+                <input type="date" class="form-control" name="novoUsuario.DataNascimento" id="txtLogin_DtNasc" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="txtLogin_Email">E-mail</label>
+            <input type="email" class="form-control" id="txtLogin_Email" name="novoUsuario.Email" placeholder="E-mail" required>
+        </div>
+        <div class="form-row">
+            <div class=" col-sm-6">
+                <label for="txtLogin_CadastroSenha">Senha</label>
+                <input type="password" class="form-control" id="txtLogin_CadastroSenha" name="novoUsuario.Senha" placeholder="Senha" required>
+                <div class="invalid-tooltip">Campo obrigatório</div>
+            </div>
+            <div class="col-sm-6">
+                <label for="txtLogin_CadastroSenha_Confirmar">Confirmar senha</label>
+                <input type="password" class="form-control" id="txtLogin_CadastroSenha_Confirmar" name="novoUsuario.ConfirmarSenha" placeholder="Confirmar Senha" required>
+                <div class="invalid-tooltip">Campo obrigatório</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <a href="javascript:Login.spnLogin_Cancelar_Click()" id="spnLogin_Cancelar" class="form-text text-muted">Cancelar</a>
+            </div>
+            <div class="col cssLogin_BtnRigth">
+                @*<button id="btnLogin_Salvar" type="submit" class="btn btn-primary">Salvar</button>*@
+                <button type="button" onclick="Login.CadastrarPessoaFisica()" class="btn btn-primary" value="Cadastrar">Cadastrar</button>
+</div>
+        </div>
+    </form>
+    @*Login Médico*@
+    <form id="frmLogin_Entrar_Medico" action="@Url.Action("LogarMedico", "Login")" onsubmit="return Login.AutenticarMedico()" method="post" style="display: none;">
+        <div class="form-group">
+            <label for="UsuarioCPF">Login</label>
+            <input type="text" class="form-control" id="LoginCRM" name="Medico.CRM" aria-describedby="emailHelp" placeholder="CRM" required>
+        </div>
+        <div class="form-group">
+            <label for="UsuarioSenha">Senha</label>
+            <input type="password" class="form-control" id="LoginSenha_Medico" name="Medico.Senha" placeholder="Digite sua senha" required>
+            <div class="form-row">
+                <div class="col-sm-6">
+                    <a href="javascript:Login.spnLogin_EsqueceuSenha_Medico_Click()" id="spnLogin_EsqueceuSenha_Medico" class="form-text text-muted">Esqueceu sua senha?</a>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <a href="javascript:Login.spnLogin_MedicoVoltar_Click()" id="spnLogin_MedicoVoltar" class="form-text text-muted">Voltar</a>
+            </div>
+            <div class="col cssLogin_BtnRigth">
+                @*<button id="btnLogin_Entrar" type="button" class="btn btn-primary" onclick="Login.Logar()">Entrar</button>*@
+                <button class="btn btn-primary" type="submit" value="Entrar">Entrar</button>
+            </div>
+        </div>
+    </form>
+    @*Formulário para recuperação de senha médico*@
+    <form id="frmLogin_Senha_Medico" style="display: none;">
+        <div class="form-group">
+            <label for="txtLogin_NovaSenha_Medico">Login</label>
+            <input type="text" class="form-control" id="txtLogin_NovaSenha_Medico" name="crm" aria-describedby="emailHelp" placeholder="Informe seu CRM">
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <a href="javascript:Login.btnLayoutVoltarMedico_Click()" id="btnLayoutVoltarMedico" class="form-text text-muted cssLogin_BtnVoltar">Voltar</a>
+            </div>
+            <div class="col cssLogin_BtnRigth">
+                <button type="button" onclick="Login.AutenticarRecuperarAcessoMedico()" class="btn btn-primary" value="Prosseguir">Prosseguir</button>
+            </div>
+        </div>
+    </form>
+</div>
